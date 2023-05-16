@@ -1,0 +1,63 @@
+/*
+ * Complete the 'pageCount' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER p
+ */
+
+function pageCount(n, p) {
+    // Write your code here
+let pageCountFront = 0;
+let pageCountBack = 0;
+let i = 1;
+if (p === 1) {
+   return pageCountFront = 0;
+  }
+if (n%2 !== 0 && (p === n || p === n-1) || n%2 === 0 && p===n) {
+  return pageCountBack = 0;
+  }
+
+while (i < n) {
+  i+=2;
+  pageCountFront++;
+  if (p === i || p === i-1) {
+    break;
+  }
+
+}
+
+  while (n > 1) {
+    n-=2;
+    pageCountBack++;
+    if (p === n || p === n+1) {
+      break;
+    }
+  }
+  console.log(pageCountFront);
+  console.log(pageCountBack);
+  return Math.min(pageCountFront, pageCountBack)
+}
+
+
+
+console.log(pageCount(5, 4)); // 0
+
+
+// I came across an alternate, much simpler solution using Math.floor()
+
+function pageCount(n, p) {
+  let pageCountFront = Math.floor(p / 2);
+  let pageCountBack = Math.floor(n / 2) - Math.floor(p / 2); // or let pageCountBack = Math.floor(n / 2) - pageCountFront;
+
+  return Math.min(pageCountFront, pageCountBack);
+}
+
+// Math.floor() rounds a number down to the nearest integer value.
+// It returns the largest integer less than or equal to a given number.
+// For positive numbers, it rounds DOWN to the nearest integer.
+// For negative numbers, it also rounds DOWN to the nearest (more negative) integer.
+
+// In the code above, dividing the target page number by 2 and applying Math.floor() on the return value will give the number of pages turned to reach that target page since each page turn increments by two pages.
+// variable 'pageCountBack', which represents the number of pages turned from the end of the book, divides the total number of pages (n) by two and applies Math.floor() to determine the maximum number of page turns within the book. Subtracting 'pageCountFront' will provide the number of page turns required to reach the target page from the back of the book.
