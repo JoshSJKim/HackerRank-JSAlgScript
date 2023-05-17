@@ -1,0 +1,38 @@
+/*
+ * Complete the getMoneySpent function below.
+ */
+function getMoneySpent(keyboards, drives, b) {
+    /*
+     * Write your code here.
+     */
+let total = [];
+for (let i=0; i<keyboards.length; i++) {
+    for (let j=0; j<drives.length; j++) {
+        let sum = keyboards[i] + drives[j]
+
+        if (sum <= b) {
+            total.push(sum);
+            console.log(total);
+        }
+    }
+}
+if (total.length === 0) {
+  return -1;
+}
+return Math.max(...total);
+}
+
+console.log(getMoneySpent([3, 1], [5, 2, 8], 1));
+
+// I initially had the following for the 'return -1' condition
+
+if (total === []) {
+  return -1;
+}
+
+// This is flawed because you cannot directly compare arrays using the '===' operator since arrays are reference types.
+// Comparison checks for reference equality.
+// It is more logical to check if the length of the array is '0', in other words empty.
+
+// The above code works for most test cases, but it throws a runtime error.
+// I guess it means that it needs to be optimized.
