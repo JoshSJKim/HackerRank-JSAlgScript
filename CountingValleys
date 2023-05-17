@@ -1,0 +1,60 @@
+/*
+ * Complete the 'countingValleys' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER steps
+ *  2. STRING path
+ */
+
+function countingValleys(steps, path) {
+    // Write your code here
+let seaLevel = 0;
+let traverseArr = [];
+let valley = 0;
+for (let i=0; i< path.length; i++) {
+  switch(path[i]) {
+    case "D": 
+      traverseArr.push(seaLevel-=1);
+      break;
+    case "U":
+      traverseArr.push(seaLevel+=1);
+      break;
+  }
+  console.log(traverseArr)
+  if (traverseArr[i] === 0 && traverseArr[i-1] < 0) {
+    valley++;
+  }
+}
+  return valley;
+}
+
+// This code works for most cases, but I guess it has some efficiency issues.
+// The test result returns 'terminated due to timeout'.
+// I need to find a way make it more concise to optimize this code.
+
+function countingValleys(steps, path) {
+  // Write your code here
+let seaLevel = 0;
+let valley = 0;
+for (let i=0; i< path.length; i++) {
+  if (path[i] === "U") {
+      seaLevel++;
+      if(seaLevel === 0) {
+          valley++;
+      }
+  }
+  if(path[i] === "D") {
+      seaLevel--;
+  }
+}
+return valley;
+};
+
+// Declare variable 'seaLevel' with a value of 0, and a variable 'valley' with a value of 0.
+// Use a for loop to iterate through the 'path' string.
+// if the element at index 'i' in the 'path' string is 'U', increment 'seaLevel' by 1.
+// Then check if the value of 'seaLevel' equals '0'.
+// This is checked at this point because if 'seaLevel' equals '0' on the way up, it means that it is coming out of a valley.
+// Then, if the element at index 'i' in the 'path' string is 'D', decrement 'seaLevel' by 1.
+// After iteration, return 'valley'.
