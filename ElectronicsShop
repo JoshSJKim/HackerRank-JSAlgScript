@@ -36,3 +36,66 @@ if (total === []) {
 
 // The above code works for most test cases, but it throws a runtime error.
 // I guess it means that it needs to be optimized.
+
+function getMoneySpent(keyboards, drives, b) {
+  /*
+   * Write your code here.
+   */
+let total = [];
+let maxSum = 0;
+for (let i=0; i<keyboards.length; i++) {
+  for (let j=0; j<drives.length; j++) {
+      let sum = keyboards[i] + drives[j];
+
+      if (sum <= b && sum > maxSum ) {
+          total.push(sum);
+          maxSum = sum;
+          console.log(total);
+      }
+  }
+}
+if (total.length === 0) {
+return -1;
+}
+return Math.max(...total); // or you could simply return 'maxSum'
+}
+
+console.log(getMoneySpent([3, 1], [5, 2, 8], 10));
+
+// Modify the code so that value of 'sum' is pushed to 'total' array only if the current value of 'sum' is greater than the previous value of 'sum'.
+
+// Come to think of it, it could be further simplified by removing the 'total' array.
+
+function getMoneySpent(keyboards, drives, b) {
+  let maxSum = 0;
+  for (let i = 0; i < keyboards.length; i++) {
+    for (let j = 0; j < drives.length; j++) {
+      let sum = keyboards[i] +drives[j];
+
+      if (sum <= b && sum > maxSum) {
+        maxSum = sum;
+      }
+    }
+  }
+  if (maxSum === 0) { // if value of maxSum hasn't changed, i.e none of the value of 'sum' are less than or equal to budget (b)
+    return -1;
+  }
+  return maxSum;
+}
+
+// Further thought, if maxSum is initialized to '-1', and if the value of maxSum does not change throughout the iteration, it will simply return '-1'.
+// in other words, 'if (maxSum === 0)' statement is not necessary.
+
+function getMoneySpent(keyboards, drives, b) {
+  let maxSum = -1;
+  for (let i = 0; i < keyboards.length; i++) {
+    for (let j = 0; j < drives.length; j++) {
+      let sum = keyboards[i] + drives[j];
+
+      if (sum <= b && sum > maxSum) {
+        maxSum = sum;
+      }
+    }
+  }
+  return maxSum;
+}
