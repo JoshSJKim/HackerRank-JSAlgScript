@@ -1,0 +1,32 @@
+/*
+ * Complete the 'sockMerchant' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER_ARRAY ar
+ */
+
+function sockMerchant(n, ar) {
+    // Write your code here
+    let count = 0;
+    let freq = {};
+      for (let i = 0; i < ar.length; i++) {
+        if (freq[ar[i]] === undefined) {
+          freq[ar[i]] = 1;
+        } else {
+          count++;
+          freq[ar[i]] = undefined;
+          console.log(freq);
+        }
+      }
+      return count;
+}
+
+// Initialize a variable count to keep track of the number of pairs of socks.
+// Create an empty object freq to store the frequency of each sock.
+// Iterate through the ar array using a for loop.
+// Check if the current sock (ar[i]) already exists as a key in the freq object.
+// If it doesn't exist, assign the value of 1 to freq[ar[i]] to indicate the occurrence of one sock of that type.
+// If it already exists, increment count by 1 to represent a pair of socks found, set freq[ar[i]] to undefined to mark that the pair has been counted, and log the updated freq object.
+// Return the final value of count, which represents the total number of pairs of socks found. 
