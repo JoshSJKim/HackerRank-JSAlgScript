@@ -1,0 +1,22 @@
+/*
+ * Complete the 'viralAdvertising' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER n as parameter.
+ */
+
+function viralAdvertising(n) {
+    // Write your code here
+let reached = 0;
+let shared = 5;
+let i = 1;
+while (i <= n) {
+  let liked = Math.floor(shared / 2);
+  reached = reached + liked;
+  shared = liked * 3;
+  i++;
+}
+return reached;
+}
+
+console.log(viralAdvertising(5)); // 24
