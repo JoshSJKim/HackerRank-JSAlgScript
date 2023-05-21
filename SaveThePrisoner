@@ -1,0 +1,30 @@
+/*
+ * Complete the 'saveThePrisoner' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER m
+ *  3. INTEGER s
+ */
+
+function saveThePrisoner(n, m, s) {
+    // Write your code here
+let lastPrisoner = (s + m - 1) % n;
+if (lastPrisoner === 0) {
+  lastPrisoner = n;
+}
+return lastPrisoner;
+}
+
+console.log(saveThePrisoner(7, 19, 2))
+console.log(saveThePrisoner(3, 7, 3));
+
+// Couldn't solve this for a while and I came across a very simple yet effective way of solving it.
+// lastPrisoner = (s + m - 1) % n;
+// Add 'm' to 's' to represent the number of candies distributed to the prisoners.
+// '% n' ensures that the index remains within the range of 1 to 'n'.
+// '- 1' is to compensate for the 'off-by-one-error' since the candy will have to be distributed to the starting index '2' as well.
+// without the '-1', it would be as if candies were distributed starting at the next seat '3'.
+// if the remainder of 'lastPrisoner' is '0', return the value of 'n'.
+// Without this 'if' statement, the function would return '0' if the remainder value is '0'.
