@@ -1,0 +1,54 @@
+/*
+ * Complete the 'circularArrayRotation' function below.
+ *
+ * The function is expected to return an INTEGER_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER_ARRAY a
+ *  2. INTEGER k
+ *  3. INTEGER_ARRAY queries
+ */
+
+function circularArrayRotation(a, k, queries) {
+    // Write your code here
+
+while (k > 0) {
+let popped = a.pop();
+a.unshift(popped);
+k--;
+}
+let queriesArr = [];
+for (let i = 0; i < queries.length; i++) {
+  queriesArr.push(a[queries[i]]);
+}
+return queriesArr;
+}
+
+console.log(circularArrayRotation([3, 4, 5], 2, [1, 2]))      // [5. 3]
+console.log(circularArrayRotation([1, 2, 3], 2, [0, 1, 2]));  // [2, 3, 1]
+
+// The above code works for most cases. But it is somewhat inefficient.
+// The test result returns 'Abort called'.
+
+function circularArrayRotation(a, k, queries) {
+  // Write your code here
+
+while (k > 0) {
+let popped = a.pop();
+a.unshift(popped);
+k--;
+}
+
+let queriesArr = [];
+for (let index of queries) {
+queriesArr.push(a[index]);
+}
+
+return queriesArr;
+}
+
+// This code initially failed, even though it's much more concise with the 'for...of' loop.
+// It originally had a 'console.log(a)' to check if the rotation was performed correctly after the 'unshift' method.
+// Tried removing the console.log call and the function passed.
+// NOTE: Remove any console.log calls after you've verified that it's performing as intended.
+// Funny thing to note is that the first code also passed all the test cases when I removed the console.log call.
+// But 'for...of' loop seems more concise and easy to read. Better get in practice of using this more.
