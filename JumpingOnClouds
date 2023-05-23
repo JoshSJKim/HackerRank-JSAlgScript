@@ -1,0 +1,50 @@
+// Complete the jumpingOnClouds function below.
+function jumpingOnClouds(c, k) {
+let energy = 100;
+const n = c.length;
+for  (let i = 0; i < n; i+=k) {
+  switch(c[i]) {
+    case 0: energy--;
+    break;
+    case 1: energy-=3;
+    break;
+  }
+  if (n-i >= k) {
+    i = (i+k) % n;
+  }
+
+}
+return energy;
+}
+
+console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));
+console.log(jumpingOnClouds([1, 1, 1, 0, 1, 1, 0, 0, 0, 0], 3))
+
+// The above code is a failed attempt. I just wanted to leave a record of my effort in failure.
+// I need the code to continue looping until the iteration falls back on index '0'. 
+// I attempted to do this by manipulating the value of 'i' if the difference between the value of the length of the array and the current index is greater than the step size 'k'.
+// But apparently, this is not recommended.
+// I still haven't figured out a statement to terminate the loop when it loops back to index '0'.
+
+// A little help from chatGPT led me back to a forgotten loop method called 'do...while'.
+
+function jumpingOnClouds(c, k) {
+  let energy = 100;
+  const n = c.length;
+  let i = 0;
+
+  do {                  // the 'do...while' loop will always ensure that the loop runs at least once, regardless of the condition.
+    if (c[i] === 0) {
+      energy--;
+    } else {
+      energy -= 3;
+    }
+    i = (i + k) % n;    // If value of i + k is less than 'n', 'i' will evaluate to 'i+k'.
+                        // % operator calculates the remainder if 'i+k' is greater than 'n' to ensure that the loop continues to run until the final condition is met.
+  } while (i !== 0);    // This loop will continue to run while 'i' does not equal '0'. When i === 0, the loop will terminate and return 'energy'.
+
+  return energy;
+}
+
+console.log(jumpingOnClouds([0, 0, 1, 0, 0, 1, 1, 0], 2));        // 92
+console.log(jumpingOnClouds([1, 1, 1, 0, 1, 1, 0, 0, 0, 0], 3));  // 80
