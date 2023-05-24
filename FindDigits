@@ -1,0 +1,47 @@
+/*
+ * Complete the 'findDigits' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER n as parameter.
+ */
+
+function findDigits(n) {
+    // Write your code here
+
+let nStr = n.toString().split("");
+let splitArr = [];
+
+for (let elem of nStr) {
+  splitArr.push(parseInt(elem));
+}
+
+let divisorCount = 0;
+for (let num of splitArr) {
+  if (n % num === 0) {
+    divisorCount++;
+  }
+}
+return divisorCount;
+}
+
+console.log(findDigits(124));  // 3
+
+// Shown below is a more concise method
+
+function findDigits(n) {
+  let divisorCount = 0;   // keep track of the number of divisors
+  let num = n;            // declare variable num equal to the value of 'n' to avoid manipulating the value of 'n' through the operation
+
+  while (num !== 0) {     // While num is not equal to '0', perform the following operation
+    let digit = num % 10; // use the remainder operator to find the last digit of 'n'
+    num = Math.floor(num/10); // before moving on, modify the value of 'num' by dividing it by '10' and applying Math.floor() to round down to the nearest integer.
+    // console.log(digit) will display '4', '2', '1'
+    // console.log(num) here will display '12', '1', '0'   
+    if (digit !== 0 && n % digit === 0) { // if value of 'digit' is not '0' and if 'n' is evenly divisible by 'digit'
+      divisorCount++;                     // increment 'divisorCount' by 1.
+    }
+  }
+  return divisorCount; // return divisorCount 
+}
+
+console.log(findDigits(124)); // 3
