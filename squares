@@ -1,0 +1,25 @@
+/*
+ * Complete the 'squares' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER a
+ *  2. INTEGER b
+ */
+
+function squares(a, b) {
+    // Write your code here
+let count = 0;
+while (a <= b) {
+if (a % Math.sqrt(a) === 0) {
+  count++;
+}
+  a++;
+}
+return count;
+}
+
+console.log(squares(24, 49))
+
+// This code does not pass the test cases, it works though.
+// It is inefficient because it performs unnecessary calculations for every number.
